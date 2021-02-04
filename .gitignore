@@ -1,6 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+
 # dependencies
+/express-guest-list-api-memory-data-store
 /node_modules
 /.pnp
 .pnp.js
