@@ -5,7 +5,9 @@ export default function Fetching() {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [list, setList] = useState([]);
 
+  // Create Guest function
   async function createGuest(firstName, lastName) {
     const response = await fetch(`${baseUrl}/`, {
       method: 'POST',
@@ -17,7 +19,7 @@ export default function Fetching() {
     const createdGuest = await response.json();
     // console.log(createdGuest);
   }
-
+  // Fetching the data
   async function getAllGuests() {
     const response = await fetch(`${baseUrl}/`);
     const allGuests = await response.json();
@@ -30,21 +32,42 @@ export default function Fetching() {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          const inputFirstName = document.getElementById('firstName').value;
-          const inputLastName = document.getElementById('lastName').value;
-          createGuest(inputFirstName, inputLastName);
+          // createGuest(inputFirstName, inputLastName);
           getAllGuests();
         }}
       >
-        <input id="firstName" />
-        <input id="lastName" />
-        <button>Submit</button>
-      </form>
+        <input
+          onChange={(event) => {
+            setFirstName(event.currentTarget.value);
+          }}
+          value={firstName}
+        />
 
-      <p>
-        {firstName}
-        {lastName}
-      </p>
+        <input
+          onChange={(event) => {
+            setLastName(event.currentTarget.value);
+          }}
+          value={lastName}
+        />
+        <button
+          type="submit"
+          onClick={() => {
+            setList();
+          }}
+        >
+          Submit
+        </button>
+      </form>
+      <ul>
+        {list.map((guest) => (
+          <li key={guest.id}>
+            {firstName}
+            {lastName}
+          </li>
+        ))}
+      </ul>
+      <p>{firstName}</p>
+      <p>{lastName}</p>
     </div>
   );
 }
