@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import Fetching from './components/Fetching';
 
 function App() {
   return (
     <div className="App">
-      <header></header>
+      <header />
       <Fetching />
     </div>
   );

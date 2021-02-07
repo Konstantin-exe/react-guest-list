@@ -6,6 +6,7 @@ export default function Fetching() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [list, setList] = useState([]);
+  const [attending, setAttending] = useState(false);
 
   // Create Guest function
   async function createGuest(firstName, lastName) {
@@ -16,58 +17,77 @@ export default function Fetching() {
       },
       body: JSON.stringify({ firstName: firstName, lastName: lastName }),
     });
-    const createdGuest = await response.json();
-    // console.log(createdGuest);
+    // const createdGuest = await response.json();
   }
   // Fetching the data
   async function getAllGuests() {
     const response = await fetch(`${baseUrl}/`);
     const allGuests = await response.json();
-    console.log(allGuests);
+    setList(allGuests);
   }
+  useEffect(() => {
+    getAllGuests();
+  });
+
+  const deleteGuest = async (guest) => {
+    const response = await fetch(`${baseUrl}/${guest.id}`, {
+      method: 'DELETE',
+    });
+    const deletedGuest = await response.json();
+  };
 
   return (
     <div>
       <h1>Guest List</h1>
-      <form
-        onSubmit={(event) => {
+
+      <input
+        onChange={(event) => {
+          setFirstName(event.currentTarget.value);
+        }}
+        value={firstName}
+      />
+
+      <input
+        onChange={(event) => {
+          setLastName(event.currentTarget.value);
+        }}
+        value={lastName}
+      />
+      <button
+        type="submit"
+        onClick={(event) => {
           event.preventDefault();
-          // createGuest(inputFirstName, inputLastName);
+          createGuest(firstName, lastName);
           getAllGuests();
+          setFirstName('');
+          setLastName('');
         }}
       >
-        <input
-          onChange={(event) => {
-            setFirstName(event.currentTarget.value);
-          }}
-          value={firstName}
-        />
+        Submit
+      </button>
 
-        <input
-          onChange={(event) => {
-            setLastName(event.currentTarget.value);
-          }}
-          value={lastName}
-        />
-        <button
-          type="submit"
-          onClick={() => {
-            setList();
-          }}
-        >
-          Submit
-        </button>
-      </form>
-      <ul>
+      <div>
         {list.map((guest) => (
-          <li key={guest.id}>
-            {firstName}
-            {lastName}
-          </li>
+          <div key={guest.id}>
+            {guest.firstName} {guest.lastName}
+            {/* Delete Button  */}
+            <button
+              onClick={() => {
+                deleteGuest(guest);
+              }}
+            >
+              Delete
+            </button>
+            <input
+              type="checkbox"
+              label="attending"
+              onChange={(e) => {
+                setAttending(e.target.value);
+              }}
+            />
+          </div>
         ))}
-      </ul>
-      <p>{firstName}</p>
-      <p>{lastName}</p>
+      </div>
     </div>
   );
 }
