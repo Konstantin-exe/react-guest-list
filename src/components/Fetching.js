@@ -6,20 +6,36 @@ export default function Fetching() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [list, setList] = useState([]);
-  const [attending, setAttending] = useState(false);
+  const [attending, setAttending] = useState();
 
-  // Create Guest function
+  // Create Guest on API
   async function createGuest(firstName, lastName) {
     const response = await fetch(`${baseUrl}/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ firstName: firstName, lastName: lastName }),
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+      }),
     });
     // const createdGuest = await response.json();
   }
-  // Fetching the data
+
+  const attendingGuest = async (guest) => {
+    const response = await fetch(`${baseUrl}/${guest.attending}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ attending: true }),
+    });
+    const updatedGuest = await response.json();
+    setAttending(updatedGuest);
+  };
+
+  // Get all Guests from API
   async function getAllGuests() {
     const response = await fetch(`${baseUrl}/`);
     const allGuests = await response.json();
@@ -29,11 +45,12 @@ export default function Fetching() {
     getAllGuests();
   });
 
+  // Deleting a Guest
   const deleteGuest = async (guest) => {
     const response = await fetch(`${baseUrl}/${guest.id}`, {
       method: 'DELETE',
     });
-    const deletedGuest = await response.json();
+    // const deletedGuest = await response.json();
   };
 
   return (
@@ -70,7 +87,6 @@ export default function Fetching() {
         {list.map((guest) => (
           <div key={guest.id}>
             {guest.firstName} {guest.lastName}
-            {/* Delete Button  */}
             <button
               onClick={() => {
                 deleteGuest(guest);
@@ -81,8 +97,9 @@ export default function Fetching() {
             <input
               type="checkbox"
               label="attending"
-              onChange={(e) => {
-                setAttending(e.target.value);
+              // id={guest.attending}
+              onChange={() => {
+                setAttending(guest.attending);
               }}
             />
           </div>
