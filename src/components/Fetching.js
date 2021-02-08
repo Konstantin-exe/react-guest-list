@@ -7,6 +7,8 @@ export default function Fetching() {
   const [lastName, setLastName] = useState('');
   const [list, setList] = useState([]);
   const [attending, setAttending] = useState(false);
+  const [status, setStatus] = useState('');
+  const [filterGuest, setFilterGuest] = useState([]);
 
   // Create Guest on API
   async function createGuest(firstName, lastName) {
@@ -22,6 +24,20 @@ export default function Fetching() {
     });
     // const createdGuest = await response.json();
   }
+  // Filter
+  const setFilter = () => {
+    switch (status) {
+      case 'Attending':
+        setFilterGuest(list.filter((guest) => guest.attending === true));
+        break;
+      case 'Not Attending':
+        setFilterGuest(list.filter((guest) => guest.attending === false));
+        break;
+      default:
+        setFilterGuest(list);
+        break;
+    }
+  };
   // setting a Guest to attending
   async function attendingGuest(guest, checkedState) {
     await fetch(`${baseUrl}/${guest.id}`, {
@@ -44,7 +60,8 @@ export default function Fetching() {
   }
   useEffect(() => {
     getAllGuests();
-  });
+    setFilter();
+  }, [list, status]);
 
   // Deleting a Guest
   const deleteGuest = async (guest) => {
@@ -85,7 +102,7 @@ export default function Fetching() {
       </button>
 
       <div>
-        {list.map((guest) => (
+        {filterGuest.map((guest) => (
           <div key={guest.id}>
             {guest.firstName} {guest.lastName}
             <button
@@ -97,7 +114,7 @@ export default function Fetching() {
             </button>
             <input
               type="checkbox"
-              label="attending"
+              label="attend"
               checked={guest.attending}
               onChange={(event) => {
                 attendingGuest(guest, event.currentTarget.checked);
@@ -106,6 +123,15 @@ export default function Fetching() {
           </div>
         ))}
       </div>
+      <select
+        onChange={(event) => {
+          setStatus(event.target.value);
+        }}
+      >
+        <option>All</option>
+        <option>Attending</option>
+        <option>Not Attending</option>
+      </select>
     </div>
   );
 }
