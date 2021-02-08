@@ -6,7 +6,7 @@ export default function Fetching() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [list, setList] = useState([]);
-  const [attending, setAttending] = useState();
+  const [attending, setAttending] = useState(false);
 
   // Create Guest on API
   async function createGuest(firstName, lastName) {
@@ -22,18 +22,19 @@ export default function Fetching() {
     });
     // const createdGuest = await response.json();
   }
-
-  const attendingGuest = async (guest) => {
-    const response = await fetch(`${baseUrl}/${guest.attending}`, {
+  // setting a Guest to attending
+  async function attendingGuest(guest, checkedState) {
+    await fetch(`${baseUrl}/${guest.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ attending: true }),
+      body: JSON.stringify({ attending: checkedState }),
     });
-    const updatedGuest = await response.json();
-    setAttending(updatedGuest);
-  };
+    setAttending(checkedState);
+    // const updatedGuest = await response.json();
+    // setAttending(updatedGuest);
+  }
 
   // Get all Guests from API
   async function getAllGuests() {
@@ -97,9 +98,9 @@ export default function Fetching() {
             <input
               type="checkbox"
               label="attending"
-              // id={guest.attending}
-              onChange={() => {
-                setAttending(guest.attending);
+              checked={guest.attending}
+              onChange={(event) => {
+                attendingGuest(guest, event.currentTarget.checked);
               }}
             />
           </div>
