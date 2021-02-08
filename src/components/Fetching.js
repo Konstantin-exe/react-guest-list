@@ -30,7 +30,7 @@ export default function Fetching() {
       case 'Attending':
         setFilterGuest(list.filter((guest) => guest.attending === true));
         break;
-      case 'Not Attending':
+      case 'Stay At Home Crew':
         setFilterGuest(list.filter((guest) => guest.attending === false));
         break;
       default:
@@ -130,7 +130,7 @@ export default function Fetching() {
       >
         <option>All</option>
         <option>Attending</option>
-        <option>Not Attending</option>
+        <option>Stay At Home Crew</option>
       </select>
     </div>
   );
