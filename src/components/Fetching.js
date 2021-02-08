@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
 
 export default function Fetching() {
@@ -73,34 +75,44 @@ export default function Fetching() {
 
   return (
     <div>
-      <h1>Guest List</h1>
+      <div>
+        <h1>Corona - Party</h1>
 
-      <input
-        onChange={(event) => {
-          setFirstName(event.currentTarget.value);
-        }}
-        value={firstName}
-      />
+        <input
+          onChange={(event) => {
+            setFirstName(event.currentTarget.value);
+          }}
+          value={firstName}
+        />
 
-      <input
+        <input
+          onChange={(event) => {
+            setLastName(event.currentTarget.value);
+          }}
+          value={lastName}
+        />
+        <button
+          type="submit"
+          onClick={(event) => {
+            event.preventDefault();
+            createGuest(firstName, lastName);
+            getAllGuests();
+            setFirstName('');
+            setLastName('');
+          }}
+        >
+          Submit
+        </button>
+      </div>
+      <select
         onChange={(event) => {
-          setLastName(event.currentTarget.value);
-        }}
-        value={lastName}
-      />
-      <button
-        type="submit"
-        onClick={(event) => {
-          event.preventDefault();
-          createGuest(firstName, lastName);
-          getAllGuests();
-          setFirstName('');
-          setLastName('');
+          setStatus(event.target.value);
         }}
       >
-        Submit
-      </button>
-
+        <option>Choose your Coronies</option>
+        <option>Attending</option>
+        <option>Stay At Home Crew</option>
+      </select>
       <div>
         {filterGuest.map((guest) => (
           <div key={guest.id}>
@@ -123,15 +135,6 @@ export default function Fetching() {
           </div>
         ))}
       </div>
-      <select
-        onChange={(event) => {
-          setStatus(event.target.value);
-        }}
-      >
-        <option>All</option>
-        <option>Attending</option>
-        <option>Stay At Home Crew</option>
-      </select>
     </div>
   );
 }
