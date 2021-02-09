@@ -7,6 +7,7 @@ export const cards = css`
 `;
 
 export const cardContent = css`
+  box-shadow: 0px 25px 40px 0;
   justify-content: space-between;
   background-color: white;
   border-radius: 10px;
