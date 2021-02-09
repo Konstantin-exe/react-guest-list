@@ -1,6 +1,22 @@
-# Getting Started with Create React App
+# CORONA PARTY GUEST LIST
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Are you sick of not knowing of whom of your fellow conspiracy theoriest will come to the next hot anti-corona demo in your town?
+SAY NO MORE: with the _CORONA PARTY GUEST LIST_ you will be able to organize all the participants in just one web application.
+
+FROM NOW ON YOU WILL ALWAYS KNOW HOW MUCH Q-APPLE JUICE YOU NEED TO PREPARE!
+
+-GL pic 1
+
+# USAGE
+
+Use the Input-Fields to give your participants a "First- " and "Last Name" and press "Submit" to create an Demo-Card.
+With the "Filter" selection menu you will be able to filter your fellow theoriest between the proud boys who will show up at the event and the guys who will stay at home being active on social media.
+
+Just press the "Is attending" checkbox in order to mark a participant as attending.
+
+If one of your lads (for some unknown reason) will start to believe in the mainstream media and will get vaccinated, you can press the black "Vaccinated" button to immediately erase this person from your life... erm... list!
+
+GL- pic 2
 
 ## Available Scripts
 
@@ -68,3 +84,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# FOLLOW ME ON TWITTER!
+
+twitter.com/KonstantinMlln1
