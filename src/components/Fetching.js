@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
+import { inputForm, backgroundForm, filterStyle } from '../styling/inputForm';
+import { cardContent, cards } from '../styling/cards';
 
 export default function Fetching() {
   const baseUrl = 'http://localhost:5000';
@@ -75,10 +77,11 @@ export default function Fetching() {
 
   return (
     <div>
-      <div>
+      <div css={inputForm}>
         <h1>Corona - Party</h1>
 
         <input
+          placeholder="First Name"
           onChange={(event) => {
             setFirstName(event.currentTarget.value);
           }}
@@ -86,6 +89,7 @@ export default function Fetching() {
         />
 
         <input
+          placeholder="Last Name"
           onChange={(event) => {
             setLastName(event.currentTarget.value);
           }}
@@ -104,29 +108,37 @@ export default function Fetching() {
           Submit
         </button>
       </div>
-      <select
-        onChange={(event) => {
-          setStatus(event.target.value);
-        }}
-      >
-        <option>Choose your Coronies</option>
-        <option>Attending</option>
-        <option>Stay At Home Crew</option>
-      </select>
-      <div>
+      <div css={backgroundForm} />
+      <div css={filterStyle}>
+        <span>Filter:</span>
+        <select
+          onChange={(event) => {
+            setStatus(event.target.value);
+          }}
+        >
+          <option>Choose your Coronies</option>
+          <option>Attending</option>
+          <option>Stay At Home Crew</option>
+        </select>
+      </div>
+      <div css={cards}>
         {filterGuest.map((guest) => (
-          <div key={guest.id}>
-            {guest.firstName} {guest.lastName}
+          <div css={cardContent} key={guest.id}>
+            <p>
+              {guest.firstName} {guest.lastName}
+            </p>
             <button
               onClick={() => {
                 deleteGuest(guest);
               }}
             >
-              Delete
+              Vaccinated
             </button>
+            <label htmlFor="checkbox">Is attending</label>
             <input
               type="checkbox"
               label="attend"
+              id="checkbox"
               checked={guest.attending}
               onChange={(event) => {
                 attendingGuest(guest, event.currentTarget.checked);

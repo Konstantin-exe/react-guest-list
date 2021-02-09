@@ -4,12 +4,18 @@ import Fetching from './components/Fetching';
 import blockade from './img/blockade.jpeg';
 
 const globalStyles = css`
-  body {
+  html {
     background-image: url(${blockade});
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     background-repeat: no-repeat;
-    max-width: 100%;
-    height: auto;
-    background-size: 100%;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    overflow: hidden;
   }
 `;
 
