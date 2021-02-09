@@ -1,6 +1,6 @@
 # CORONA PARTY GUEST LIST
 
-Are you sick of not knowing of whom of your fellow conspiracy theoriest will come to the next hot anti-corona demo in your town?
+Are you sick of not knowing whom of your fellow conspiracy theoriest will come to the next hot anti-corona demo in your town?
 SAY NO MORE: with the _CORONA PARTY GUEST LIST_ you will be able to organize all the participants in just one web application.
 
 FROM NOW ON YOU WILL ALWAYS KNOW HOW MUCH Q-APPLE JUICE YOU NEED TO PREPARE!
