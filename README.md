@@ -1,11 +1,14 @@
 # CORONA PARTY GUEST LIST
 
-Are you sick of not knowing of whom of your fellow conspiracy theoriest will come to the next hot anti-corona demo in your town?
+Are you sick of not knowing whom of your fellow conspiracy theoriest will come to the next hot anti-corona demo in your town?
 SAY NO MORE: with the _CORONA PARTY GUEST LIST_ you will be able to organize all the participants in just one web application.
 
 FROM NOW ON YOU WILL ALWAYS KNOW HOW MUCH Q-APPLE JUICE YOU NEED TO PREPARE!
 
--GL pic 1
+<img width="1435" alt="GL pic 1" src="https://user-images.githubusercontent.com/70595672/107433493-ade18000-6b29-11eb-8961-7ea0a8708d74.png">
+
+
+
 
 # USAGE
 
@@ -16,7 +19,7 @@ Just press the "Is attending" checkbox in order to mark a participant as attendi
 
 If one of your lads (for some unknown reason) will start to believe in the mainstream media and will get vaccinated, you can press the black "Vaccinated" button to immediately erase this person from your life... erm... list!
 
-GL- pic 2
+<img width="776" alt="GL pc 2" src="https://user-images.githubusercontent.com/70595672/107433570-c9e52180-6b29-11eb-8476-10a3db587688.png">
 
 ## Available Scripts
 
