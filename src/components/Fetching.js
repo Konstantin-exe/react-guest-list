@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
 import { inputForm, backgroundForm, filterStyle } from '../styling/inputForm';
 import { cardContent, cards } from '../styling/cards';
@@ -10,13 +9,12 @@ export default function Fetching() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [list, setList] = useState([]);
-  const [attending, setAttending] = useState(false);
   const [status, setStatus] = useState('');
   const [filterGuest, setFilterGuest] = useState([]);
 
   // Create Guest on API
-  async function createGuest(firstName, lastName) {
-    const response = await fetch(`${baseUrl}/`, {
+  async function createGuest() {
+    await fetch(`${baseUrl}/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -51,9 +49,6 @@ export default function Fetching() {
       },
       body: JSON.stringify({ attending: checkedState }),
     });
-    setAttending(checkedState);
-    // const updatedGuest = await response.json();
-    // setAttending(updatedGuest);
   }
 
   // Get all Guests from API
@@ -65,14 +60,13 @@ export default function Fetching() {
   useEffect(() => {
     getAllGuests();
     setFilter();
-  }, [list, status]);
+  });
 
   // Deleting a Guest
   const deleteGuest = async (guest) => {
-    const response = await fetch(`${baseUrl}/${guest.id}`, {
+    await fetch(`${baseUrl}/${guest.id}`, {
       method: 'DELETE',
     });
-    // const deletedGuest = await response.json();
   };
 
   return (
