@@ -4,7 +4,7 @@ import { inputForm, backgroundForm, filterStyle } from '../styling/inputForm';
 import { cardContent, cards } from '../styling/cards';
 
 export default function Fetching() {
-  const baseUrl = 'http://localhost:5000';
+  const baseUrl = 'https://react-guest-list-corona.herokuapp.com';
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
